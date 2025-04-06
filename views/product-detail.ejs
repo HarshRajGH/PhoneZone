@@ -1,0 +1,53 @@
+<%- include('./partials/header', { user }) %>
+
+<div class="product-detail-container">
+  <div class="product-detail">
+    <div class="product-image">
+      <img src="<%= product.image %>" alt="<%= product.name %>">
+    </div>
+    
+    <div class="product-info">
+      <h2><%= product.name %></h2>
+      <p class="product-brand"><%= product.brand %></p>
+      <p class="product-category"><%= product.category %></p>
+      <p class="product-price">$<%= product.price %></p>
+      
+      <div class="product-description">
+        <h3>Description</h3>
+        <p><%= product.description %></p>
+      </div>
+      
+      <div class="product-features">
+        <h3>Features</h3>
+        <ul>
+          <% product.features.forEach(feature => { %>
+            <li><%= feature %></li>
+          <% }); %>
+        </ul>
+      </div>
+      
+      <% if (product.inStock > 0) { %>
+        <p class="in-stock">In Stock: <%= product.inStock %></p>
+        
+        <% if (user) { %>
+          <form action="/cart/add" method="POST" class="add-to-cart-form">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <div class="form-group">
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" name="quantity" value="1" min="1" max="<%= product.inStock %>">
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+          </form>
+        <% } else { %>
+          <p class="login-prompt">Please <a href="/login">login</a> to add this item to your cart.</p>
+        <% } %>
+      <% } else { %>
+        <p class="out-of-stock">Out of Stock</p>
+      <% } %>
+      
+      <a href="/products" class="btn btn-secondary">Back to Products</a>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

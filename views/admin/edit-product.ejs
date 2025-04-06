@@ -1,0 +1,67 @@
+<%- include('../partials/header', { user: { isAdmin: true } }) %>
+
+<div class="admin-container">
+  <h2>Edit Product</h2>
+  
+  <form action="/products/admin/edit/<%= product._id %>" method="POST" class="product-form">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" id="name" name="name" value="<%= product.name %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <select id="brand" name="brand" required>
+        <option value="">Select Brand</option>
+        <option value="Apple" <%= product.brand === 'Apple' ? 'selected' : '' %>>Apple</option>
+        <option value="Samsung" <%= product.brand === 'Samsung' ? 'selected' : '' %>>Samsung</option>
+        <option value="Google" <%= product.brand === 'Google' ? 'selected' : '' %>>Google</option>
+        <option value="OnePlus" <%= product.brand === 'OnePlus' ? 'selected' : '' %>>OnePlus</option>
+        <option value="Xiaomi" <%= product.brand === 'Xiaomi' ? 'selected' : '' %>>Xiaomi</option>
+        <option value="Other" <%= product.brand === 'Other' ? 'selected' : '' %>>Other</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="Flagship" <%= product.category === 'Flagship' ? 'selected' : '' %>>Flagship</option>
+        <option value="Mid-range" <%= product.category === 'Mid-range' ? 'selected' : '' %>>Mid-range</option>
+        <option value="Budget" <%= product.category === 'Budget' ? 'selected' : '' %>>Budget</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="price">Price ($)</label>
+      <input type="number" id="price" name="price" step="0.01" min="0" value="<%= product.price %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="inStock">Stock Quantity</label>
+      <input type="number" id="inStock" name="inStock" min="0" value="<%= product.inStock %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="text" id="image" name="image" value="<%= product.image %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="features">Features (comma separated)</label>
+      <textarea id="features" name="features" rows="3" required><%= product.features.join(', ') %></textarea>
+    </div>
+    
+    <div class="form-actions">
+      <a href="/products" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-primary">Update Product</button>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

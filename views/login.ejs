@@ -1,0 +1,29 @@
+<%- include('./partials/header', { user: null }) %>
+
+<div class="auth-container">
+  <h2>Login to PhoneZone</h2>
+  
+  <% if (error) { %>
+    <div class="error-message">
+      <%= error %>
+    </div>
+  <% } %>
+  
+  <form action="/login" method="POST" class="auth-form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+  
+  <p class="auth-link">Don't have an account? <a href="/register">Register here</a></p>
+</div>
+
+<%- include('./partials/footer') %>

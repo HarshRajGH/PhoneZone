@@ -1,0 +1,34 @@
+<%- include('./partials/header', { user: { id: user._id, username: user.username, isAdmin: user.isAdmin } }) %>
+
+<div class="profile-container">
+  <h2>Your Profile</h2>
+  
+  <div class="profile-info">
+    <div class="info-group">
+      <label>Username:</label>
+      <p><%= user.username %></p>
+    </div>
+    
+    <div class="info-group">
+      <label>Email:</label>
+      <p><%= user.email %></p>
+    </div>
+    
+    <div class="info-group">
+      <label>Account Type:</label>
+      <p><%= user.isAdmin ? 'Admin' : 'Customer' %></p>
+    </div>
+    
+    <div class="info-group">
+      <label>Member Since:</label>
+      <p><%= new Date(user.createdAt).toLocaleDateString() %></p>
+    </div>
+  </div>
+  
+  <div class="profile-actions">
+    <a href="/products" class="btn btn-secondary">Continue Shopping</a>
+    <a href="/logout" class="btn btn-delete">Logout</a>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

@@ -1,0 +1,96 @@
+<%- include('./partials/header', { user }) %>
+
+<div class="products-container">
+  <h2>Latest Mobile Phones</h2>
+  
+  <div class="filter-section">
+    <input type="text" id="searchInput" placeholder="Search products...">
+    <select id="brandFilter">
+      <option value="">All Brands</option>
+      <option value="Apple">Apple</option>
+      <option value="Samsung">Samsung</option>
+      <option value="Google">Google</option>
+      <option value="OnePlus">OnePlus</option>
+      <option value="Xiaomi">Xiaomi</option>
+    </select>
+    <select id="categoryFilter">
+      <option value="">All Categories</option>
+      <option value="Flagship">Flagship</option>
+      <option value="Mid-range">Mid-range</option>
+      <option value="Budget">Budget</option>
+    </select>
+  </div>
+  
+  <div class="products-grid">
+    <% if (products && products.length > 0) { %>
+      <% products.forEach(product => { %>
+        <div class="product-card">
+          <div class="product-image">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+          </div>
+          <div class="product-info">
+            <h3><%= product.name %></h3>
+            <p class="product-brand"><%= product.brand %></p>
+            <p class="product-price">$<%= product.price %></p>
+            <% if (product.inStock > 0) { %>
+              <p class="in-stock">In Stock: <%= product.inStock %></p>
+            <% } else { %>
+              <p class="out-of-stock">Out of Stock</p>
+            <% } %>
+          </div>
+          <div class="product-actions">
+            <a href="/products/<%= product._id %>" class="btn btn-secondary">View Details</a>
+            <% if (user && user.isAdmin) { %>
+              <a href="/products/admin/edit/<%= product._id %>" class="btn btn-edit">Edit</a>
+              <form action="/products/admin/delete/<%= product._id %>" method="POST" class="delete-form">
+                <button type="submit" class="btn btn-delete">Delete</button>
+              </form>
+            <% } %>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <div class="no-products">
+        <p>No products available at the moment.</p>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<script>
+  // Simple client-side filtering
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const brandFilter = document.getElementById('brandFilter');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    function filterProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const brandTerm = brandFilter.value.toLowerCase();
+      const categoryTerm = categoryFilter.value.toLowerCase();
+      
+      productCards.forEach(card => {
+        const name = card.querySelector('h3').textContent.toLowerCase();
+        const brand = card.querySelector('.product-brand').textContent.toLowerCase();
+        const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+        
+        const matchesSearch = name.includes(searchTerm);
+        const matchesBrand = brandTerm === '' || brand.includes(brandTerm);
+        const matchesCategory = categoryTerm === '' || category.includes(categoryTerm);
+        
+        if (matchesSearch && matchesBrand && matchesCategory) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    searchInput.addEventListener('input', filterProducts);
+    brandFilter.addEventListener('change', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+  });
+</script>
+
+<%- include('./partials/footer') %>

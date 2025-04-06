@@ -1,0 +1,67 @@
+<%- include('../partials/header', { user: { isAdmin: true } }) %>
+
+<div class="admin-container">
+  <h2>Add New Product</h2>
+  
+  <form action="/products/admin/add" method="POST" class="product-form">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="brand">Brand</label>
+      <select id="brand" name="brand" required>
+        <option value="">Select Brand</option>
+        <option value="Apple">Apple</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Google">Google</option>
+        <option value="OnePlus">OnePlus</option>
+        <option value="Xiaomi">Xiaomi</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        <option value="">Select Category</option>
+        <option value="Flagship">Flagship</option>
+        <option value="Mid-range">Mid-range</option>
+        <option value="Budget">Budget</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="price">Price ($)</label>
+      <input type="number" id="price" name="price" step="0.01" min="0" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="inStock">Stock Quantity</label>
+      <input type="number" id="inStock" name="inStock" min="0" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input type="text" id="image" name="image" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="features">Features (comma separated)</label>
+      <textarea id="features" name="features" rows="3" required></textarea>
+    </div>
+    
+    <div class="form-actions">
+      <a href="/products" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-primary">Add Product</button>
+    </div>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
