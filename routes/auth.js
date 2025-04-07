@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 // Middleware to check if user is logged in
 const isAuthenticated = (req, res, next) => {
@@ -20,28 +21,30 @@ router.get('/register', (req, res) => {
   res.render('register', { error: null });
 });
 
-// Login post
+// Reset password page
+router.get('/reset-password', (req, res) => {
+  res.render('reset', { error: null, success: null });
+});
+
+// Login POST
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    
-    // Find user by email
+
     const user = await User.findOne({ email });
     if (!user) {
       return res.render('login', { error: 'Invalid email or password' });
     }
-    
-    // Check password
+
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.render('login', { error: 'Invalid email or password' });
     }
-    
-    // Set session
+
     req.session.userId = user._id;
     req.session.isAdmin = user.isAdmin;
     req.session.username = user.username;
-    
+
     res.redirect('/products');
   } catch (error) {
     console.error(error);
@@ -49,37 +52,61 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Register post
+// Register POST
 router.post('/register', async (req, res) => {
   try {
     const { username, email, password, confirmPassword } = req.body;
-    
-    // Check if passwords match
+
     if (password !== confirmPassword) {
       return res.render('register', { error: 'Passwords do not match' });
     }
-    
-    // Check if user already exists
+
     const existingUser = await User.findOne({ $or: [{ email }, { username }] });
     if (existingUser) {
       return res.render('register', { error: 'User already exists' });
     }
-    
-    // Create new user
+
     const user = new User({ username, email, password });
     await user.save();
-    
-    // Set session
+
     req.session.userId = user._id;
     req.session.isAdmin = user.isAdmin;
     req.session.username = user.username;
-    
+
     res.redirect('/products');
   } catch (error) {
     console.error(error);
     res.render('register', { error: 'Server error' });
   }
 });
+
+router.post('/reset-password', async (req, res) => {
+  const { email, newPassword, confirmPassword } = req.body;
+
+  if (newPassword !== confirmPassword) {
+    return res.render('reset', { error: 'Passwords do not match.', success: null });
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.render('reset', { error: 'No account found with this email.', success: null });
+    }
+
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update password directly in DB to avoid double hashing
+    await User.updateOne({ email }, { password: hashedPassword });
+
+    return res.render('reset', { error: null, success: 'Password has been successfully updated.' });
+  } catch (err) {
+    console.error(err);
+    return res.render('reset', { error: 'Something went wrong. Please try again later.', success: null });
+  }
+});
+
 
 // Logout
 router.get('/logout', (req, res) => {
