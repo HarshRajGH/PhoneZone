@@ -3,7 +3,7 @@
     --primary-color: #3498db;
     --secondary-color: #2c3e50;
     --accent-color: #e74c3c;
-    --background-color: #f5f5f5;
+    --background-color: #9ac1f0;
     --text-color: #333;
     --border-color: #ddd;
     --success-color: #2ecc71;
@@ -39,37 +39,55 @@
   }
   
   /* Header */
-  header {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo a {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  nav ul {
-    display: flex;
-  }
-  
-  nav ul li {
-    margin-left: 1.5rem;
-  }
-  
-  nav ul li a {
-    color: white;
-    font-weight: 500;
-  }
-  
-  nav ul li a:hover {
-    color: var(--primary-color);
-  }
+header {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 2rem 0;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.logo a {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav ul li {
+  margin-left: 1.5rem;
+}
+
+nav ul li a {
+  color: white;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  color: var(--light-color);
+}
+
   
   /* Main Content */
   main {
@@ -271,7 +289,7 @@
   }
   
   .product-card {
-    background-color: white;
+    background-color: rgb(240, 254, 254);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -911,3 +929,353 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* About page styles - Add to your main CSS file or create a separate one */
+
+.about-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #b4d8ff 100%);
+  color: rgb(119, 156, 249);
+  padding: 80px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-section {
+  padding: 40px 0;
+}
+
+.about-section h2 {
+  color: #2575fc;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.about-content, .about-team, .about-commitment, .contact-cta {
+  margin-bottom: 60px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.value-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+}
+
+.value-icon {
+  font-size: 2.5rem;
+  color: #2575fc;
+  margin-bottom: 15px;
+}
+
+.value-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.about-commitment ul {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 20px;
+}
+
+.about-commitment li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.contact-cta {
+  text-align: center;
+  background-color: #f0f2f5;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.contact-cta .btn {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  padding: 12px 30px;
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 60px 0;
+  }
+  
+  .about-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Contact page styles - Add to your main CSS file or create a separate one */
+
+.contact-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #b4d8ff 100%);
+  color: rgb(119, 156, 249);
+  padding: 80px 0;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.contact-hero p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-section {
+  padding: 40px 0;
+}
+
+.contact-section h2 {
+  color: #2575fc;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 60px;
+}
+
+.contact-methods {
+  margin-top: 30px;
+}
+
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: #2575fc;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(37, 117, 252, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-details h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.contact-details p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.social-media {
+  margin-top: 40px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f0f2f5;
+  border-radius: 50%;
+  color: #2575fc;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #2575fc;
+  color: white;
+}
+
+.contact-form-container {
+  background-color: rgb(183, 207, 255);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+
+.alert {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  color: white;
+}
+
+.alert.success {
+  background-color: #4CAF50;
+}
+
+.alert.error {
+  background-color: #f44336;
+}
+
+.contact-map {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.contact-map h2 {
+  color: #2575fc;
+  margin-bottom: 30px;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  background-color: #e9ecef;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+}
+
+.faq-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.faq-section h2 {
+  color: #2575fc;
+  margin-bottom: 40px;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.faq-item {
+  background-color: rgb(226, 244, 255);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.more-questions {
+  margin-top: 40px;
+}
+
+.more-questions a {
+  color: #005eff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.more-questions a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 60px 0;
+  }
+  
+  .contact-hero h1 {
+    font-size: 2.2rem;
+  }
+}

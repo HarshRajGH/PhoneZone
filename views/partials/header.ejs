@@ -9,24 +9,31 @@
 </head>
 <body>
   <header>
-    <div class="logo">
-      <a href="/">PhoneZone</a>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="/products">Shop</a></li>
-        <% if (typeof user !== 'undefined' && user) { %>
-          <li><a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-          <li><a href="/profile"><i class="fas fa-user"></i> <%= user.username %></a></li>
-          <li><a href="/logout">Logout</a></li>
-          <% if (user.isAdmin) { %>
-            <li><a href="/products/admin/add">Add Product</a></li>
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">PhoneZone</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/products">Shop</a></li>
+          <% if (typeof user !== 'undefined' && user) { %>
+            <li><a href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+            <li><a href="/profile"><i class="fas fa-user"></i> <%= user.username %></a></li>
+            <li><a href="/logout">Logout</a></li>
+            <% if (user.isAdmin) { %>
+              <li><a href="/products/admin/add">Add Product</a></li>
+            <% } %>
+          <% } else { %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
           <% } %>
-        <% } else { %>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        <% } %>
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    </div>
+    
+    <div>
+      <h1>Premium Smartphone Catalog</h1>
+      <p class="subtitle">Discover the perfect phone for your needs</p>
+    </div>
   </header>
   <main>

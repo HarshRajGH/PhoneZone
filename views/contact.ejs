@@ -1,0 +1,150 @@
+<%- include('./partials/header', { user }) %>
+
+<div class="contact-container">
+  <div class="contact-hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We're here to help with any questions or concerns</p>
+    </div>
+  </div>
+  
+  <div class="contact-form-container" id="contact-form-container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Get In Touch</h2>
+        <p>We'd love to hear from you! Whether you have a question about our products, need technical support, or want to provide feedback, our team is ready to assist you.</p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Visit Us</h3>
+              <p>08 Villa, Law Gate<br>Chaheru, Punjab, 144411</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Call Us</h3>
+              <p>+916284092416<br>Monday-Friday, 9am-6pm PST</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Email Us</h3>
+              <p>harshlpu28@gmail.com<br>harshlpu28@gmail.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="contact-details">
+              <h3>Live Chat</h3>
+              <p>Available on our website<br>9am-8pm PST, 7 days a week</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="social-media">
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form-container">
+        <h2>Send Us a Message</h2>
+        <% if (locals.message) { %>
+          <div class="alert <%= locals.messageType %>">
+            <%= message %>
+          </div>
+        <% } %>
+        <form action="/contact/send" method="POST" class="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" required>
+              <option value="">Select a subject</option>
+              <option value="Product Inquiry">Product Inquiry</option>
+              <option value="Order Status">Order Status</option>
+              <option value="Technical Support">Technical Support</option>
+              <option value="Return/Refund">Return/Refund</option>
+              <option value="Feedback">Feedback</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div class="contact-map">
+    <h2>Find Us</h2>
+    <div class="map-container">
+      <!-- Replace with actual map embed code -->
+      <div class="map-placeholder">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1705.4067031269926!2d75.69463596029684!3d31.253588398137186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5f9bbe5385dd%3A0x37e836d18db31a6c!2sSavannah%20Home!5e0!3m2!1sen!2sin!4v1744220327999!5m2!1sen!2sin" width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>    </div>
+  </div>
+  
+  <div class="faq-section container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What is your return policy?</h3>
+        <p>We offer a 30-day return policy on all products. Items must be in their original packaging and in unused condition for a full refund.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How long does shipping take?</h3>
+        <p>Standard shipping typically takes 3-5 business days. Express shipping options are available at checkout for faster delivery.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do you offer international shipping?</h3>
+        <p>Yes, we ship to most countries worldwide. International shipping times and costs vary by location.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Are all your products covered by warranty?</h3>
+        <p>Yes, all products come with the manufacturer's warranty. We also offer extended warranty options at checkout.</p>
+      </div>
+    </div>
+    
+    <div class="more-questions">
+      <p>Don't see your question here? <a href="#contact-form-container">Contact us directly</a> and we'll be happy to help!</p>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
